@@ -1,6 +1,53 @@
 
 {
   "system": "ALTATHEER DEALS MANAGEMENT",
-  "version": "1.0",
-  "deals": []
+  "version": "2.0",
+  "deals": [],
+  "deal_schema": {
+    "deal_id": "",
+    "created_at": "",
+    "property_reference": "",
+    "buyer_reference": "",
+    "deal_type": "",
+    "emirate": "",
+    "location": "",
+    "agreed_price_aed": null,
+    "commission_rate_percent": null,
+    "commission_amount_aed": null,
+    "company_share_aed": null,
+    "partner_share_aed": null,
+    "deal_stage": "New Lead",
+    "negotiation_status": "Pending",
+    "agreement_signed": false,
+    "payment_status": "Pending",
+    "commission_status": "Not Due",
+    "commission_received_aed": 0,
+    "expected_closing_date": "",
+    "actual_closing_date": "",
+    "internal_notes": ""
+  },
+  "deal_stages": [
+    "New Lead",
+    "Initial Contact",
+    "Qualified",
+    "Property Matched",
+    "Viewing or Meeting",
+    "Negotiation",
+    "Offer Submitted",
+    "Agreement Signed",
+    "Completed",
+    "Cancelled"
+  ],
+  "commission_rules": {
+    "commission_requires_confirmed_agreement": true,
+    "commission_calculated_from_agreed_rate": true,
+    "commission_received_tracked_separately": true,
+    "partner_shares_require_approval": true
+  },
+  "confidentiality": {
+    "buyer_details_private": true,
+    "owner_details_private": true,
+    "commission_details_internal": true,
+    "public_access": false
+  }
 }
