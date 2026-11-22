@@ -4,66 +4,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALTATHEER Virtual Office</title>
+<title>ALTATHEER | Virtual Office</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#101010;color:#f5f5f5;font-family:Arial,sans-serif}
-header{background:#181818;padding:24px;border-bottom:2px solid #c6a04a}
-h1{color:#d6b45c;margin:0}
-header p{color:#aaa}
-main{padding:18px;max-width:850px;margin:auto}
-select{background:#252525;color:white;padding:10px;border:1px solid #b99a4a;border-radius:8px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
-.card{background:#202020;border:1px solid #49402b;border-radius:12px;padding:20px;min-height:105px}
-.card h3{color:#d6b45c;margin:0 0 10px}
-.card p{color:#bbb;font-size:13px;margin:0}
-footer{text-align:center;color:#888;padding:25px}
-@media(max-width:450px){.grid{grid-template-columns:1fr}}
+:root {
+ --gold:#c6a04a;
+ --bg:#101319;
+ --panel:#1b222b;
+ --border:#343c46;
+}
+* {box-sizing:border-box}
+body {
+ margin:0;
+ background:var(--bg);
+ color:#f5f5f5;
+ font-family:Arial,sans-serif;
+}
+header {
+ background:#181e27;
+ padding:22px;
+ border-bottom:2px solid var(--gold);
+}
+header h1 {color:#d6b45c;margin:0}
+header p {color:#aaa;margin:8px 0}
+select,button {cursor:pointer}
+select {
+ background:#252c35;
+ color:white;
+ padding:10px;
+ border:1px solid var(--gold);
+ border-radius:7px;
+}
+.layout {display:flex;min-height:75vh}
+nav {
+ width:225px;
+ background:#171d25;
+ padding:15px;
+}
+nav button {
+ display:block;
+ width:100%;
+ margin:6px 0;
+ padding:13px;
+ text-align:right;
+ background:transparent;
+ color:#ddd;
+ border:1px solid #343c46;
+ border-radius:7px;
+}
+nav button.active {
+ background:#302b20;
+ border-color:var(--gold);
+ color:#e5c36e;
+}
+main {padding:24px;flex:1;max-width:1100px}
+.page {display:none}
+.page.active {display:block}
+.grid {
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+ gap:14px;
+}
+.card {
+ background:var(--panel);
+ border:1px solid var(--border);
+ border-radius:12px;
+ padding:20px;
+ margin-bottom:14px;
+}
+.card h3 {color:#d6b45c;margin-top:0}
+.stat {font-size:27px;color:var(--gold);font-weight:bold}
+.muted {color:#aaa;font-size:13px;line-height:1.8}
+.notice {
+ border-right:3px solid var(--gold);
+ padding:13px;
+ background:#25251f;
+ line-height:1.9;
+}
+footer {
+ text-align:center;
+ padding:25px;
+ color:#888;
+ border-top:1px solid #333;
+}
+@media(max-width:650px) {
+ .layout {display:block}
+ nav {
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+ }
+ main {padding:15px}
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>ALTATHEER</h1>
-<p>REAL ESTATE VIRTUAL OFFICE</p>
+<h1>ALTATHEER REAL ESTATE</h1>
+<p id="brandSub">المكتب الافتراضي للإدارة والتشغيل</p>
+
 <select id="language" onchange="changeLanguage()">
 <option value="ar">العربية</option>
 <option value="en">English</option>
 </select>
 </header>
+
+<div class="layout">
+
+<nav id="navigation">
+<button class="active" onclick="showPage('dashboard',this)" data-ar="لوحة الإدارة" data-en="Dashboard">لوحة الإدارة</button>
+<button onclick="showPage('properties',this)" data-ar="العقارات والأصول" data-en="Properties & Assets">العقارات والأصول</button>
+<button onclick="showPage('buyers',this)" data-ar="المشترون والمستثمرون" data-en="Buyers & Investors">المشترون والمستثمرون</button>
+<button onclick="showPage('requests',this)" data-ar="طلبات الشراء" data-en="Buyer Requests">طلبات الشراء</button>
+<button onclick="showPage('matching',this)" data-ar="محرك المطابقة" data-en="Matching Engine">محرك المطابقة</button>
+<button onclick="showPage('deals',this)" data-ar="الصفقات والعمولات" data-en="Deals & Commissions">الصفقات والعمولات</button>
+<button onclick="showPage('reports',this)" data-ar="التقارير" data-en="Reports">التقارير</button>
+</nav>
+
 <main>
-<h2 id="welcome">مرحباً بك في المكتب الافتراضي</h2>
-<p id="subtitle">إدارة أعمال التأثير للعقارات</p>
-<div class="grid" id="menu"></div>
+
+<section id="dashboard" class="page active">
+<h2 data-ar="مرحباً بك في مكتب التأثير الافتراضي" data-en="Welcome to ALTATHEER Virtual Office">مرحباً بك في مكتب التأثير الافتراضي</h2>
+<p class="muted" data-ar="مركز الإدارة والمتابعة والفرص الاستثمارية" data-en="Management and investment opportunities">مركز الإدارة والمتابعة والفرص الاستثمارية</p>
+
+<div class="grid">
+<div class="card">
+<h3 data-ar="العقارات" data-en="Properties">العقارات</h3>
+<div class="stat">0</div>
+<p class="muted">Property Register</p>
+</div>
+<div class="card">
+<h3 data-ar="طلبات المشترين" data-en="Buyer Requests">طلبات المشترين</h3>
+<div class="stat">0</div>
+<p class="muted">Buyer Database</p>
+</div>
+<div class="card">
+<h3 data-ar="التطابقات" data-en="Matches">التطابقات</h3>
+<div class="stat">0</div>
+<p class="muted">Matching Engine</p>
+</div>
+<div class="card">
+<h3 data-ar="الصفقات" data-en="Deals">الصفقات</h3>
+<div class="stat">0</div>
+<p class="muted">Deal Management</p>
+</div>
+</div>
+
+<div class="card">
+<h3 data-ar="حالة النظام" data-en="System Status">حالة النظام</h3>
+<p class="muted" data-ar="واجهة المكتب جاهزة. قاعدة البيانات وتسجيل الدخول والصلاحيات تحتاج إلى ربط قبل التشغيل الفعلي." data-en="Interface ready. Database and authentication integration are required before production.">واجهة المكتب جاهزة. قاعدة البيانات وتسجيل الدخول والصلاحيات تحتاج إلى ربط قبل التشغيل الفعلي.</p>
+</div>
+</section>
+
+<section id="properties" class="page">
+<h2 data-ar="العقارات والأصول" data-en="Properties & Assets">العقارات والأصول</h2>
+<div class="card">
+<h3 data-ar="سجل العقارات" data-en="Property Register">سجل العقارات</h3>
+<p class="muted">Land | Towers | Buildings | Warehouses | Commercial Assets</p>
+<div class="notice" data-ar="تُستخدم أرقام مرجعية داخلية. أسماء الملاك وأرقام الأراضي بيانات سرية لا تظهر في واجهة التسويق." data-en="Internal references only. Owner names and plot numbers are confidential and must not appear in marketing views.">تُستخدم أرقام مرجعية داخلية. أسماء الملاك وأرقام الأراضي بيانات سرية لا تظهر في واجهة التسويق.</div>
+</div>
+</section>
+
+<section id="buyers" class="page">
+<h2 data-ar="المشترون والمستثمرون" data-en="Buyers & Investors">المشترون والمستثمرون</h2>
+<div class="card">
+<h3 data-ar="قاعدة العملاء" data-en="Client Database">قاعدة العملاء</h3>
+<p class="muted" data-ar="تسجيل العملاء والمستثمرين ومعلومات التواصل وحالة التحقق." data-en="Manage clients, investors, contact information and verification status.">تسجيل العملاء والمستثمرين ومعلومات التواصل وحالة التحقق.</p>
+</div>
+</section>
+
+<section id="requests" class="page">
+<h2 data-ar="طلبات الشراء" data-en="Buyer Requests">طلبات الشراء</h2>
+<div class="card">
+<h3 data-ar="سجل طلبات العملاء" data-en="Client Requirements">سجل طلبات العملاء</h3>
+<p class="muted">Location | Asset Type | Area | Budget | Permitted Use</p>
+</div>
+</section>
+
+<section id="matching" class="page">
+<h2 data-ar="محرك المطابقة العقارية" data-en="Property Matching Engine">محرك المطابقة العقارية</h2>
+<div class="card">
+<h3>ALTATHEER MATCHING ENGINE 1.0</h3>
+<p class="muted">Asset Type: 25% | Location: 20% | Budget: 20% | Plot Size: 15% | Permitted Use: 20%</p>
+<div class="notice" data-ar="تُحسب مطابقة المواصفات بصورة مستقلة عن موثوقية المشتري والتحقق من العقار." data-en="Property matching is calculated separately from buyer and property verification.">تُحسب مطابقة المواصفات بصورة مستقلة عن موثوقية المشتري والتحقق من العقار.</div>
+</div>
+</section>
+
+<section id="deals" class="page">
+<h2 data-ar="الصفقات والعمولات" data-en="Deals & Commissions">الصفقات والعمولات</h2>
+<div class="card">
+<h3 data-ar="إدارة الصفقات" data-en="Deal Management">إدارة الصفقات</h3>
+<p class="muted" data-ar="متابعة التفاوض والحالة والقيمة والعمولات ومراحل الإغلاق." data-en="Track negotiations, status, value, commissions and closing stages.">متابعة التفاوض والحالة والقيمة والعمولات ومراحل الإغلاق.</p>
+</div>
+</section>
+
+<section id="reports" class="page">
+<h2 data-ar="التقارير" data-en="Reports">التقارير</h2>
+<div class="card">
+<h3 data-ar="التقارير الإدارية" data-en="Management Reports">التقارير الإدارية</h3>
+<p class="muted" data-ar="تقارير العروض والطلبات والتطابقات والصفقات والأداء." data-en="Property, buyer request, matching, deal and performance reports.">تقارير العروض والطلبات والتطابقات والصفقات والأداء.</p>
+</div>
+</section>
+
 </main>
-<footer>ALTATHEER REAL ESTATE LLC<br>+971 55 601 2040</footer>
+</div>
+
+<footer>
+ALTATHEER REAL ESTATE LLC<br>
++971 55 601 2040
+</footer>
+
 <script>
-const translations={
-ar:[
-["المشترون والمستثمرون","إدارة العملاء"],
-["العقارات والأصول","الأراضي والأبراج والمباني"],
-["طلبات الشراء","طلبات العملاء"],
-["مطابقة الطلبات","مطابقة الطلبات بالعروض"],
-["الصفقات والعمولات","متابعة الصفقات"],
-["التقارير اليومية","متابعة الأداء"]
-],
-en:[
-["Buyers & Investors","Manage clients"],
-["Properties & Assets","Land, towers and buildings"],
-["Buyer Requests","Client requirements"],
-["Matching Engine","Match requests with offers"],
-["Deals & Commissions","Track transactions"],
-["Daily Reports","Business performance"]
-]
-};
-function changeLanguage(){
-const lang=document.getElementById("language").value;
-document.documentElement.lang=lang;
-document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-document.getElementById("welcome").textContent=lang==="ar"?"مرحباً بك في المكتب الافتراضي":"Welcome to Virtual Office";
-document.getElementById("subtitle").textContent=lang==="ar"?"إدارة أعمال التأثير للعقارات":"ALTATHEER REAL ESTATE Management";
-document.getElementById("menu").innerHTML=translations[lang].map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("");
+function showPage(id,button) {
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+ button.classList.add('active');
 }
-changeLanguage();
+
+function changeLanguage() {
+ const lang=document.getElementById('language').value;
+ document.documentElement.lang=lang;
+ document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+
+ document.querySelectorAll('[data-ar]').forEach(el=>{
+  el.textContent=el.getAttribute('data-'+lang);
+ });
+
+ document.getElementById('brandSub').textContent=
+ lang==='ar'?'المكتب الافتراضي للإدارة والتشغيل':'Virtual Office | Management & Operations';
+}
 </script>
+
 </body>
 </html>
