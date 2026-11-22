@@ -3,239 +3,207 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALTATHEER | Virtual Office</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ALTATHEER Virtual Office</title>
 <style>
-:root {
- --gold:#c6a04a;
- --bg:#101319;
- --panel:#1b222b;
- --border:#343c46;
-}
-* {box-sizing:border-box}
-body {
- margin:0;
- background:var(--bg);
- color:#f5f5f5;
- font-family:Arial,sans-serif;
-}
-header {
- background:#181e27;
- padding:22px;
- border-bottom:2px solid var(--gold);
-}
-header h1 {color:#d6b45c;margin:0}
-header p {color:#aaa;margin:8px 0}
-select,button {cursor:pointer}
-select {
- background:#252c35;
- color:white;
- padding:10px;
- border:1px solid var(--gold);
- border-radius:7px;
-}
-.layout {display:flex;min-height:75vh}
-nav {
- width:225px;
- background:#171d25;
- padding:15px;
-}
-nav button {
- display:block;
- width:100%;
- margin:6px 0;
- padding:13px;
- text-align:right;
- background:transparent;
- color:#ddd;
- border:1px solid #343c46;
- border-radius:7px;
-}
-nav button.active {
- background:#302b20;
- border-color:var(--gold);
- color:#e5c36e;
-}
-main {padding:24px;flex:1;max-width:1100px}
-.page {display:none}
-.page.active {display:block}
-.grid {
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
- gap:14px;
-}
-.card {
- background:var(--panel);
- border:1px solid var(--border);
- border-radius:12px;
- padding:20px;
- margin-bottom:14px;
-}
-.card h3 {color:#d6b45c;margin-top:0}
-.stat {font-size:27px;color:var(--gold);font-weight:bold}
-.muted {color:#aaa;font-size:13px;line-height:1.8}
-.notice {
- border-right:3px solid var(--gold);
- padding:13px;
- background:#25251f;
- line-height:1.9;
-}
-footer {
- text-align:center;
- padding:25px;
- color:#888;
- border-top:1px solid #333;
-}
-@media(max-width:650px) {
- .layout {display:block}
- nav {
-  width:100%;
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
- }
- main {padding:15px}
-}
+*{box-sizing:border-box}
+body{margin:0;background:#10141b;color:#fff;font-family:Arial}
+header{padding:22px;background:#1b222b;border-bottom:2px solid #c6a04a}
+h1,h3{color:#d6b45c}
+nav{display:flex;flex-wrap:wrap;gap:7px;padding:12px;background:#171d25}
+button{padding:11px;background:#302b20;color:white;border:1px solid #c6a04a;border-radius:7px;cursor:pointer}
+main{padding:16px;max-width:1000px;margin:auto}
+.page{display:none}
+.page.active{display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.card{background:#1b222b;border:1px solid #343c46;padding:16px;border-radius:10px;margin-bottom:12px}
+.stat{font-size:28px;color:#d6b45c}
+label{display:block;margin-top:12px}
+input,select{width:100%;padding:11px;margin-top:5px;background:#101923;color:white;border:1px solid #444;border-radius:6px}
+.item{padding:12px;background:#202a35;margin:9px 0;border-radius:8px}
+.muted{color:#aaa;font-size:13px;line-height:1.8}
+.notice{padding:12px;background:#302b20;border-right:3px solid #c6a04a;margin:12px 0}
+footer{text-align:center;padding:20px;color:#aaa}
 </style>
 </head>
-
 <body>
-
 <header>
 <h1>ALTATHEER REAL ESTATE</h1>
-<p id="brandSub">المكتب الافتراضي للإدارة والتشغيل</p>
-
-<select id="language" onchange="changeLanguage()">
-<option value="ar">العربية</option>
-<option value="en">English</option>
-</select>
+<p>المكتب الافتراضي للإدارة والتشغيل</p>
 </header>
 
-<div class="layout">
-
-<nav id="navigation">
-<button class="active" onclick="showPage('dashboard',this)" data-ar="لوحة الإدارة" data-en="Dashboard">لوحة الإدارة</button>
-<button onclick="showPage('properties',this)" data-ar="العقارات والأصول" data-en="Properties & Assets">العقارات والأصول</button>
-<button onclick="showPage('buyers',this)" data-ar="المشترون والمستثمرون" data-en="Buyers & Investors">المشترون والمستثمرون</button>
-<button onclick="showPage('requests',this)" data-ar="طلبات الشراء" data-en="Buyer Requests">طلبات الشراء</button>
-<button onclick="showPage('matching',this)" data-ar="محرك المطابقة" data-en="Matching Engine">محرك المطابقة</button>
-<button onclick="showPage('deals',this)" data-ar="الصفقات والعمولات" data-en="Deals & Commissions">الصفقات والعمولات</button>
-<button onclick="showPage('reports',this)" data-ar="التقارير" data-en="Reports">التقارير</button>
+<nav>
+<button onclick="page('dashboard')">الرئيسية</button>
+<button onclick="page('properties')">العقارات</button>
+<button onclick="page('requests')">طلبات الشراء</button>
+<button onclick="page('matching')">المطابقة</button>
+<button onclick="page('deals')">الصفقات</button>
+<button onclick="page('reports')">التقارير</button>
 </nav>
 
 <main>
-
 <section id="dashboard" class="page active">
-<h2 data-ar="مرحباً بك في مكتب التأثير الافتراضي" data-en="Welcome to ALTATHEER Virtual Office">مرحباً بك في مكتب التأثير الافتراضي</h2>
-<p class="muted" data-ar="مركز الإدارة والمتابعة والفرص الاستثمارية" data-en="Management and investment opportunities">مركز الإدارة والمتابعة والفرص الاستثمارية</p>
-
+<h2>لوحة الإدارة</h2>
 <div class="grid">
-<div class="card">
-<h3 data-ar="العقارات" data-en="Properties">العقارات</h3>
-<div class="stat">0</div>
-<p class="muted">Property Register</p>
+<div class="card"><h3>العقارات</h3><div class="stat" id="pc">0</div></div>
+<div class="card"><h3>طلبات الشراء</h3><div class="stat" id="rc">0</div></div>
+<div class="card"><h3>الصفقات</h3><div class="stat" id="dc">0</div></div>
+<div class="card"><h3>المطابقات</h3><div class="stat" id="mc">0</div></div>
 </div>
-<div class="card">
-<h3 data-ar="طلبات المشترين" data-en="Buyer Requests">طلبات المشترين</h3>
-<div class="stat">0</div>
-<p class="muted">Buyer Database</p>
-</div>
-<div class="card">
-<h3 data-ar="التطابقات" data-en="Matches">التطابقات</h3>
-<div class="stat">0</div>
-<p class="muted">Matching Engine</p>
-</div>
-<div class="card">
-<h3 data-ar="الصفقات" data-en="Deals">الصفقات</h3>
-<div class="stat">0</div>
-<p class="muted">Deal Management</p>
-</div>
-</div>
-
-<div class="card">
-<h3 data-ar="حالة النظام" data-en="System Status">حالة النظام</h3>
-<p class="muted" data-ar="واجهة المكتب جاهزة. قاعدة البيانات وتسجيل الدخول والصلاحيات تحتاج إلى ربط قبل التشغيل الفعلي." data-en="Interface ready. Database and authentication integration are required before production.">واجهة المكتب جاهزة. قاعدة البيانات وتسجيل الدخول والصلاحيات تحتاج إلى ربط قبل التشغيل الفعلي.</p>
-</div>
+<div class="notice">نسخة تشغيل محلية أولية. لا تدخل بيانات عملاء أو ملاك حقيقية.</div>
 </section>
 
 <section id="properties" class="page">
-<h2 data-ar="العقارات والأصول" data-en="Properties & Assets">العقارات والأصول</h2>
+<h2>سجل العقارات</h2>
 <div class="card">
-<h3 data-ar="سجل العقارات" data-en="Property Register">سجل العقارات</h3>
-<p class="muted">Land | Towers | Buildings | Warehouses | Commercial Assets</p>
-<div class="notice" data-ar="تُستخدم أرقام مرجعية داخلية. أسماء الملاك وأرقام الأراضي بيانات سرية لا تظهر في واجهة التسويق." data-en="Internal references only. Owner names and plot numbers are confidential and must not appear in marketing views.">تُستخدم أرقام مرجعية داخلية. أسماء الملاك وأرقام الأراضي بيانات سرية لا تظهر في واجهة التسويق.</div>
+<h3>إضافة عقار</h3>
+<form id="pf">
+<label>المرجع الداخلي</label><input name="ref" required>
+<label>نوع العقار</label>
+<select name="type"><option>Land</option><option>Building</option><option>Tower</option><option>Warehouse</option><option>Hotel</option></select>
+<label>الإمارة</label><input name="emirate" required>
+<label>المنطقة</label><input name="location" required>
+<label>المساحة بالقدم المربع</label><input name="area" type="number">
+<label>السعر بالدرهم</label><input name="price" type="number">
+<label>الاستخدام</label><input name="use">
+<button type="submit">حفظ العقار</button>
+</form>
 </div>
-</section>
-
-<section id="buyers" class="page">
-<h2 data-ar="المشترون والمستثمرون" data-en="Buyers & Investors">المشترون والمستثمرون</h2>
-<div class="card">
-<h3 data-ar="قاعدة العملاء" data-en="Client Database">قاعدة العملاء</h3>
-<p class="muted" data-ar="تسجيل العملاء والمستثمرين ومعلومات التواصل وحالة التحقق." data-en="Manage clients, investors, contact information and verification status.">تسجيل العملاء والمستثمرين ومعلومات التواصل وحالة التحقق.</p>
-</div>
+<div class="card"><h3>السجل</h3><div id="pl"></div></div>
 </section>
 
 <section id="requests" class="page">
-<h2 data-ar="طلبات الشراء" data-en="Buyer Requests">طلبات الشراء</h2>
+<h2>طلبات المشترين</h2>
 <div class="card">
-<h3 data-ar="سجل طلبات العملاء" data-en="Client Requirements">سجل طلبات العملاء</h3>
-<p class="muted">Location | Asset Type | Area | Budget | Permitted Use</p>
+<h3>إضافة طلب شراء</h3>
+<form id="rf">
+<label>مرجع الطلب</label><input name="ref" required>
+<label>نوع العقار</label>
+<select name="type"><option>Land</option><option>Building</option><option>Tower</option><option>Warehouse</option><option>Hotel</option></select>
+<label>الإمارة</label><input name="emirate" required>
+<label>المنطقة</label><input name="location" required>
+<label>المساحة المطلوبة</label><input name="area" type="number">
+<label>الميزانية بالدرهم</label><input name="budget" type="number">
+<label>الاستخدام</label><input name="use">
+<button type="submit">حفظ الطلب</button>
+</form>
 </div>
+<div class="card"><h3>سجل الطلبات</h3><div id="rl"></div></div>
 </section>
 
 <section id="matching" class="page">
-<h2 data-ar="محرك المطابقة العقارية" data-en="Property Matching Engine">محرك المطابقة العقارية</h2>
+<h2>محرك المطابقة</h2>
 <div class="card">
-<h3>ALTATHEER MATCHING ENGINE 1.0</h3>
-<p class="muted">Asset Type: 25% | Location: 20% | Budget: 20% | Plot Size: 15% | Permitted Use: 20%</p>
-<div class="notice" data-ar="تُحسب مطابقة المواصفات بصورة مستقلة عن موثوقية المشتري والتحقق من العقار." data-en="Property matching is calculated separately from buyer and property verification.">تُحسب مطابقة المواصفات بصورة مستقلة عن موثوقية المشتري والتحقق من العقار.</div>
+<p class="muted">مطابقة نوع الأصل والمنطقة والمساحة والميزانية والاستخدام.</p>
+<button onclick="match()">تشغيل المطابقة</button>
+<div id="results"></div>
 </div>
 </section>
 
 <section id="deals" class="page">
-<h2 data-ar="الصفقات والعمولات" data-en="Deals & Commissions">الصفقات والعمولات</h2>
+<h2>إدارة الصفقات</h2>
 <div class="card">
-<h3 data-ar="إدارة الصفقات" data-en="Deal Management">إدارة الصفقات</h3>
-<p class="muted" data-ar="متابعة التفاوض والحالة والقيمة والعمولات ومراحل الإغلاق." data-en="Track negotiations, status, value, commissions and closing stages.">متابعة التفاوض والحالة والقيمة والعمولات ومراحل الإغلاق.</p>
+<form id="df">
+<label>مرجع الصفقة</label><input name="ref" required>
+<label>مرجع العقار</label><input name="property" required>
+<label>قيمة الصفقة بالدرهم</label><input name="price" type="number" required>
+<label>نسبة العمولة %</label><input name="rate" type="number" step="0.01">
+<button type="submit">حفظ الصفقة</button>
+</form>
 </div>
+<div class="card"><h3>سجل الصفقات</h3><div id="dl"></div></div>
 </section>
 
 <section id="reports" class="page">
-<h2 data-ar="التقارير" data-en="Reports">التقارير</h2>
-<div class="card">
-<h3 data-ar="التقارير الإدارية" data-en="Management Reports">التقارير الإدارية</h3>
-<p class="muted" data-ar="تقارير العروض والطلبات والتطابقات والصفقات والأداء." data-en="Property, buyer request, matching, deal and performance reports.">تقارير العروض والطلبات والتطابقات والصفقات والأداء.</p>
-</div>
+<h2>التقارير</h2>
+<div class="card" id="report"></div>
+<button onclick="backup()">تنزيل نسخة احتياطية</button>
 </section>
-
 </main>
-</div>
-
-<footer>
-ALTATHEER REAL ESTATE LLC<br>
-+971 55 601 2040
-</footer>
-
+<footer>ALTATHEER REAL ESTATE LLC</footer>
 <script>
-function showPage(id,button) {
- document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ 
+const KEY='altatheer_virtual_office_v1';
+let db={properties:[],requests:[],deals:[]};
+
+function load(){
+ try{
+  const saved=localStorage.getItem(KEY);
+  if(saved) db=JSON.parse(saved);
+ }catch(e){alert('تعذر تحميل البيانات المحلية');}
+}
+function save(){
+ localStorage.setItem(KEY,JSON.stringify(db));
+ render();
+}
+function page(id){
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
  document.getElementById(id).classList.add('active');
- document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
- button.classList.add('active');
+ if(id==='reports') report();
 }
-
-function changeLanguage() {
- const lang=document.getElementById('language').value;
- document.documentElement.lang=lang;
- document.documentElement.dir=lang==='ar'?'rtl':'ltr';
-
- document.querySelectorAll('[data-ar]').forEach(el=>{
-  el.textContent=el.getAttribute('data-'+lang);
+function esc(v){
+ return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function render(){
+ document.getElementById('pc').textContent=db.properties.length;
+ document.getElementById('rc').textContent=db.requests.length;
+ document.getElementById('dc').textContent=db.deals.length;
+ document.getElementById('pl').innerHTML=db.properties.map(x=>
+ `<div class="item"><b>${esc(x.ref)}</b> — ${esc(x.type)} — ${esc(x.location)}<br>المساحة: ${esc(x.area)} | السعر: ${esc(x.price)} درهم</div>`).join('')||'لا توجد عقارات';
+ document.getElementById('rl').innerHTML=db.requests.map(x=>
+ `<div class="item"><b>${esc(x.ref)}</b> — ${esc(x.type)} — ${esc(x.location)}<br>الميزانية: ${esc(x.budget)} درهم</div>`).join('')||'لا توجد طلبات';
+ document.getElementById('dl').innerHTML=db.deals.map(x=>
+ `<div class="item"><b>${esc(x.ref)}</b> — قيمة الصفقة: ${esc(x.price)} درهم<br>العمولة المتوقعة: ${esc(x.commission)} درهم</div>`).join('')||'لا توجد صفقات';
+}
+document.getElementById('pf').addEventListener('submit',e=>{
+ e.preventDefault();
+ const f=new FormData(e.target);
+ db.properties.push(Object.fromEntries(f.entries()));
+ save();e.target.reset();alert('تم حفظ العقار');
+});
+document.getElementById('rf').addEventListener('submit',e=>{
+ e.preventDefault();
+ const f=new FormData(e.target);
+ db.requests.push(Object.fromEntries(f.entries()));
+ save();e.target.reset();alert('تم حفظ الطلب');
+});
+document.getElementById('df').addEventListener('submit',e=>{
+ e.preventDefault();
+ const f=Object.fromEntries(new FormData(e.target).entries());
+ f.commission=Number(f.price)*Number(f.rate||0)/100;
+ db.deals.push(f);
+ save();e.target.reset();alert('تم حفظ الصفقة');
+});
+function match(){
+ let out=[];
+ db.requests.forEach(r=>{
+  db.properties.forEach(p=>{
+   let score=0;
+   if(p.type===r.type)score+=25;
+   if(p.emirate.toLowerCase()===r.emirate.toLowerCase())score+=10;
+   if(p.location.toLowerCase()===r.location.toLowerCase())score+=10;
+   if(!r.budget||!p.price||Number(p.price)<=Number(r.budget))score+=20;
+   if(!r.area||!p.area||Math.abs(Number(p.area)-Number(r.area))/Number(r.area)<=.25)score+=15;
+   if(!r.use||!p.use||p.use.toLowerCase()===r.use.toLowerCase())score+=20;
+   if(score>=50)out.push({r,p,score});
+  });
  });
-
- document.getElementById('brandSub').textContent=
- lang==='ar'?'المكتب الافتراضي للإدارة والتشغيل':'Virtual Office | Management & Operations';
+ document.getElementById('mc').textContent=out.length;
+ document.getElementById('results').innerHTML=out.map(x=>
+ `<div class="item">طلب ${esc(x.r.ref)} ↔ عقار ${esc(x.p.ref)}<br>نسبة المطابقة: ${x.score}%</div>`).join('')||'لا توجد مطابقات حالياً';
 }
+function report(){
+ document.getElementById('report').innerHTML=
+ `العقارات: ${db.properties.length}<br>طلبات الشراء: ${db.requests.length}<br>الصفقات: ${db.deals.length}<br>إجمالي العمولات المتوقعة: ${db.deals.reduce((s,x)=>s+Number(x.commission||0),0).toLocaleString('en-US')} درهم`;
+}
+function backup(){
+ const blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=url;a.download='altatheer-backup.json';a.click();
+ URL.revokeObjectURL(url);
+}
+load();
+render();
 </script>
-
 </body>
 </html>
