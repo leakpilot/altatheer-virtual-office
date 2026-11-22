@@ -1,0 +1,38 @@
+
+{
+  "system": "ALTATHEER PROPERTY MATCHING ENGINE",
+  "version": "1.0",
+  "matching_rules": {
+    "asset_type": true,
+    "emirate": true,
+    "location": true,
+    "plot_size": true,
+    "budget": true,
+    "permitted_use": true
+  },
+  "verification_rules": {
+    "buyer_identity": "Required",
+    "direct_buyer": "Preferred",
+    "funds_verification": "Required before serious negotiation",
+    "property_source": "Must be verified",
+    "owner_authorization": "Required before marketing"
+  },
+  "match_scoring": {
+    "asset_type": 25,
+    "location": 20,
+    "budget": 20,
+    "plot_size": 15,
+    "permitted_use": 20
+  },
+  "match_levels": {
+    "excellent": "85-100",
+    "good": "70-84",
+    "partial": "50-69",
+    "rejected": "Below 50"
+  },
+  "alerts": {
+    "notify_on_excellent_match": true,
+    "flag_unverified_buyers": true,
+    "flag_unverified_properties": true
+  }
+}
