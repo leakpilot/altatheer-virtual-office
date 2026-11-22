@@ -1,6 +1,40 @@
 
 {
   "system": "ALTATHEER BUYER REQUESTS",
-  "version": "1.0",
-  "requests": []
+  "version": "2.0",
+  "requests": [],
+  "request_schema": {
+    "request_id": "",
+    "created_at": "",
+    "buyer_reference": "",
+    "buyer_type": "Direct Buyer",
+    "asset_type": "",
+    "emirate": "",
+    "location": "",
+    "area_min_sqft": null,
+    "area_max_sqft": null,
+    "budget_min_aed": null,
+    "budget_max_aed": null,
+    "permitted_use": "",
+    "required_height": "",
+    "payment_method": "",
+    "purchase_timeline": "",
+    "buyer_verification": "Pending",
+    "funds_verification": "Pending",
+    "request_status": "New",
+    "source_verified": false,
+    "internal_notes": ""
+  },
+  "verification_rules": {
+    "identity_required": true,
+    "direct_buyer_preferred": true,
+    "funds_verification_required_before_serious_negotiation": true,
+    "broker_requests_must_be_identified": true
+  },
+  "confidentiality": {
+    "contact_details_private": true,
+    "identity_documents_private": true,
+    "internal_reference_only": true,
+    "public_access": false
+  }
 }
