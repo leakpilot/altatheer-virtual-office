@@ -1,7 +1,49 @@
 
 {
-  "system": "ALTATHEER REAL ESTATE",
-  "version": "1.0",
-  "properties": []
+  "system": "ALTATHEER REAL ESTATE PROPERTY INVENTORY",
+  "version": "2.0",
+  "properties": [],
+  "property_schema": {
+    "property_id": "",
+    "created_at": "",
+    "asset_type": "",
+    "emirate": "",
+    "location": "",
+    "area_sqft": null,
+    "gfa_sqft": null,
+    "permitted_use": "",
+    "permitted_height": "",
+    "asking_price_aed": null,
+    "annual_income_aed": null,
+    "occupancy_status": "",
+    "ownership_status": "",
+    "source_type": "",
+    "source_verified": false,
+    "owner_authorization": "Pending",
+    "documents_verified": false,
+    "property_status": "Under Review",
+    "internal_notes": ""
+  },
+  "asset_categories": [
+    "Land",
+    "Tower",
+    "Building",
+    "Warehouse",
+    "Hotel",
+    "Commercial Asset",
+    "Residential Asset"
+  ],
+  "verification_rules": {
+    "property_source_required": true,
+    "owner_authorization_required_before_marketing": true,
+    "documents_verification_required": true
+  },
+  "confidentiality": {
+    "hide_owner_names": true,
+    "hide_plot_numbers": true,
+    "hide_title_deed_numbers": true,
+    "hide_sensitive_documents": true,
+    "internal_reference_only": true,
+    "public_access": false
+  }
 }
-
