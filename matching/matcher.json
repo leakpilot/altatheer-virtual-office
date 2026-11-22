@@ -1,7 +1,7 @@
 
 {
   "system": "ALTATHEER PROPERTY MATCHING ENGINE",
-  "version": "1.0",
+  "version": "2.0",
   "matching_rules": {
     "asset_type": true,
     "emirate": true,
@@ -25,14 +25,35 @@
     "permitted_use": 20
   },
   "match_levels": {
-    "excellent": "85-100",
-    "good": "70-84",
-    "partial": "50-69",
-    "rejected": "Below 50"
+    "excellent": {
+      "min": 85,
+      "max": 100
+    },
+    "good": {
+      "min": 70,
+      "max": 84
+    },
+    "partial": {
+      "min": 50,
+      "max": 69
+    },
+    "rejected": {
+      "min": 0,
+      "max": 49
+    }
+  },
+  "security": {
+    "hide_owner_names": true,
+    "hide_plot_numbers": true,
+    "hide_sensitive_documents": true,
+    "internal_reference_only": true,
+    "public_data_access": false
   },
   "alerts": {
     "notify_on_excellent_match": true,
     "flag_unverified_buyers": true,
-    "flag_unverified_properties": true
+    "flag_unverified_properties": true,
+    "flag_missing_owner_authorization": true,
+    "flag_unverified_funds": true
   }
 }
