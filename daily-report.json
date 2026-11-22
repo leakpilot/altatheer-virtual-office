@@ -1,0 +1,35 @@
+
+{
+  "company": "ALTATHEER REAL ESTATE LLC",
+  "report_type": "Daily Operations Report",
+  "version": "2.0",
+  "report_date": "",
+  "summary": {
+    "new_buyers": 0,
+    "new_investors": 0,
+    "new_buyer_requests": 0,
+    "new_properties": 0,
+    "verified_buyers": 0,
+    "verified_properties": 0,
+    "new_matches": 0,
+    "active_negotiations": 0,
+    "completed_deals": 0,
+    "expected_commissions_aed": 0
+  },
+  "verification_status": {
+    "buyers_pending_verification": 0,
+    "properties_pending_verification": 0,
+    "missing_owner_authorization": 0,
+    "funds_verification_pending": 0
+  },
+  "priority_tasks": [],
+  "follow_ups": [],
+  "important_alerts": [],
+  "confidentiality": {
+    "hide_owner_names": true,
+    "hide_plot_numbers": true,
+    "hide_client_contact_details": true,
+    "internal_use_only": true
+  },
+  "notes": ""
+}
